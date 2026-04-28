@@ -1,4 +1,4 @@
-package com.montyblank.mybooks.ui.dashboard
+package com.montyblank.mybooks.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
