@@ -1,9 +1,10 @@
 package com.montyblank.mybooks.ui
 
-import android.content.res.ColorStateList
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -18,40 +19,36 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+      // IMPORTANTE: Primeiro definimos a Toolbar como ActionBar
         setSupportActionBar(binding.toolbar)
-        
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
         setupNavigation()
+
+        // Escondemos a ActionBar para remover o banner do topo e evitar crashes
+        supportActionBar?.hide()
     }
-    
+
     private fun setupNavigation() {
         val navView: BottomNavigationView = binding.navView
 
-        // Criando o estado de cores programaticamente usando colors.xml
-        val states = arrayOf(
-            intArrayOf(android.R.attr.state_checked), // Selecionado
-            intArrayOf(-android.R.attr.state_checked) // Não selecionado
-        )
-
-        val colors = intArrayOf(
-            ContextCompat.getColor(this, R.color.purple_500),
-            ContextCompat.getColor(this, R.color.gray)
-        )
-
-        val colorStateList = ColorStateList(states, colors)
-        
-        navView.itemIconTintList = colorStateList
-        navView.itemTextColor = colorStateList
-
+        // Forma estável de buscar o NavController usando FragmentContainerView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard
-            )
+            setOf(R.id.nav_host_fragment_activity_main)
         )
+
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }

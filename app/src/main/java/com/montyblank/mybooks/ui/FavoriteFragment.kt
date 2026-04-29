@@ -7,26 +7,26 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.montyblank.mybooks.databinding.FragmentHomeBinding
-import com.montyblank.mybooks.viewmodels.HomeViewModel
+import com.montyblank.mybooks.databinding.FragmentFavoriteBinding
+import com.montyblank.mybooks.viewmodels.FavoriteViewModel
 
-class HomeFragment : Fragment() {
+class FavoriteFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentFavoriteBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val homeViewModel : HomeViewModel by viewModels()
 
+    private val favoriteViewModel : FavoriteViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
