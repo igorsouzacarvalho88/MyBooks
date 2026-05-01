@@ -16,6 +16,4 @@
         android:name="com.montyblank.mybooks.ui.FavoriteFragment"
         android:label="@string/title_favorites"
         tools:layout="@layout/fragment_favorite" />
-
-
 </navigation>

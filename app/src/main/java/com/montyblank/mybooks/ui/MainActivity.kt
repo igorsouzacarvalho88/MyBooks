@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         // Escondemos a ActionBar para remover o banner do topo e evitar crashes
         supportActionBar?.hide()
+
     }
 
     private fun setupNavigation() {
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         // Forma estável de buscar o NavController usando FragmentContainerView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_host_fragment_activity_main)
+            setOf(R.id.navigation_home,R.id.navigation_favorite )
         )
 
 
