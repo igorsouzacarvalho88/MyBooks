@@ -4,7 +4,7 @@
     <!-- Títulos das telas -->
     <string name="title_home">Home</string>
     <string name="title_favorites">Favoritos</string>
-    <string name="title_book_details">Detalhes</string>
+    <string name="title_book_details">Titulo do livro</string>
 
     <!-- Mensagens dos diálogos -->
     <string name="dialog_message_delete_item">Tem certeza de que deseja excluir este item?</string>
@@ -23,5 +23,9 @@
     <string name="book_title">Título do livro</string>
     <string name="book_author">Autor </string>
     <string name="book_genre">Gênero </string>
+    <string name="name_author">Nome do autor"</string>
+    <string name="name_genre">Nome do gênero"</string>
+    <string name="quest_favorite">Livro favorito?</string>
+    <string name="checking_favorte">Favorito</string>
 
 </resources>
