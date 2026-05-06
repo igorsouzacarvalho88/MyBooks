@@ -1,16 +1,22 @@
 package com.montyblank.mybooks.ui.viewholder
 
+
+import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.montyblank.mybooks.R
 import com.montyblank.mybooks.databinding.ItemBookBinding
 import com.montyblank.mybooks.entity.BookEntity
+import com.montyblank.mybooks.ui.listener.BookListener
 
-class BookViewHolder(private val item: ItemBookBinding) : RecyclerView.ViewHolder(item.root) {
+class BookViewHolder(private val item: ItemBookBinding, private val listener: BookListener) :
+    RecyclerView.ViewHolder(item.root){
 
     fun bind( book: BookEntity){
        item.textviewTitle.text = book.title
         item.textviewGenre.text = book.genre
         item.textviewAuthor.text = book.author
+
+        item.textviewTitle.setOnClickListener { listener.onClick(book.id) }
 
         setGenreBackground(book.genre)
 
@@ -39,4 +45,5 @@ class BookViewHolder(private val item: ItemBookBinding) : RecyclerView.ViewHolde
             }
         }
     }
+
 }

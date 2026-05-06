@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.montyblank.mybooks.R
 import com.montyblank.mybooks.databinding.FragmentHomeBinding
 import com.montyblank.mybooks.ui.adapter.BookAdapter
+import com.montyblank.mybooks.ui.listener.BookListener
 import com.montyblank.mybooks.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
@@ -31,9 +34,9 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         binding.recyclerviewBooks.layoutManager = LinearLayoutManager(context)
-
-        //adpter
         binding.recyclerviewBooks.adapter = adapter
+
+        attacherListener()
 
         viewModel.getAllBooks()
 
@@ -45,6 +48,16 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun attacherListener(){
+        adapter.attachListener(object : BookListener {
+            override fun onClick(id: Int) {
+                //navegar para detalhes
+                findNavController().navigate(R.id.navigation_details)
+            }
+
+        })
     }
 
     private fun setObservers(){
