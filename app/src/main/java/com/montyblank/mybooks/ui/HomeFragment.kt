@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.montyblank.mybooks.databinding.FragmentHomeBinding
 import com.montyblank.mybooks.ui.adapter.BookAdapter
-import com.montyblank.mybooks.viewmodels.HomeViewModel
+import com.montyblank.mybooks.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.montyblank.mybooks.ui.viewhollder
+package com.montyblank.mybooks.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.montyblank.mybooks.DetailsViewModel
-import com.montyblank.mybooks.R
 import com.montyblank.mybooks.databinding.FragmentDetailsBinding
-import com.montyblank.mybooks.databinding.FragmentHomeBinding
+import com.montyblank.mybooks.viewmodel.DetailsViewModel
 
 class DetailsFragment : Fragment() {
 

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.montyblank.mybooks.databinding.ItemBookBinding
 import com.montyblank.mybooks.entity.BookEntity
-import com.montyblank.mybooks.ui.viewhollder.BookViewHolder
+import com.montyblank.mybooks.ui.viewholder.BookViewHolder
 
 class BookAdapter : RecyclerView.Adapter<BookViewHolder>() {
 

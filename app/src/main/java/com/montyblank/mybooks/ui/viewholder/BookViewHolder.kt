@@ -1,4 +1,4 @@
-package com.montyblank.mybooks.ui.viewhollder
+package com.montyblank.mybooks.ui.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.montyblank.mybooks.R
