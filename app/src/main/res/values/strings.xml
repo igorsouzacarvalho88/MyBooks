@@ -16,8 +16,8 @@
     <string name="msg_no_books">Nenhum livro encontrado nos seus favoritos!</string>
 
     <!-- Botões e descrições -->
-    <string name="button_remove_book">Remover livro</string>
-    <string name="desc_book_image">Imagem de livros</string>
+    <string name="button_remove_book">Remover Livro</string>
+    <string name="desc_book_image">Imagem de Livros</string>
 
     <!-- Texto dos itens do livro -->
     <string name="book_title">Título do livro</string>
