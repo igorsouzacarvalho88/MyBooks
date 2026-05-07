@@ -43,7 +43,7 @@ class BookRepository {
         return books.filter { it.favorite }
     }
 
-    fun getbookById(id: Int): BookEntity {
+    fun getBookById(id: Int): BookEntity {
         return books.first { it.id == id }
     }
 
@@ -66,4 +66,5 @@ class BookRepository {
         book.favorite = !book.favorite
         return true
     }
+
 }

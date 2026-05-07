@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.montyblank.mybooks.R
 import com.montyblank.mybooks.databinding.FragmentHomeBinding
+import com.montyblank.mybooks.helper.BookConstants
 import com.montyblank.mybooks.ui.adapter.BookAdapter
 import com.montyblank.mybooks.ui.listener.BookListener
 import com.montyblank.mybooks.viewmodel.HomeViewModel
@@ -53,8 +54,13 @@ class HomeFragment : Fragment() {
     private fun attacherListener(){
         adapter.attachListener(object : BookListener {
             override fun onClick(id: Int) {
+
+                val bundle = Bundle()
+                bundle.putInt(BookConstants.KEY.BOOK_ID, id)
+
                 //navegar para detalhes
-                findNavController().navigate(R.id.navigation_details)
+                findNavController().navigate(R.id.navigation_details,bundle)
+
             }
 
         })

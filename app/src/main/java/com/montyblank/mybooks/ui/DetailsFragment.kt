@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.montyblank.mybooks.databinding.FragmentDetailsBinding
+import com.montyblank.mybooks.helper.BookConstants
 import com.montyblank.mybooks.viewmodel.DetailsViewModel
 
 class DetailsFragment : Fragment() {
@@ -16,10 +17,27 @@ class DetailsFragment : Fragment() {
 
     private val viewModel: DetailsViewModel by viewModels()
 
+    private var bookId = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, b: Bundle?): View {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
+        setObservers()
+
+        bookId = arguments?.getInt(BookConstants.KEY.BOOK_ID) ?: 0
+
+        viewModel.getBookById(bookId)
+
         return binding.root
+    }
+
+    private fun setObservers() {
+        viewModel.book.observe(viewLifecycleOwner) {
+            binding.textviewTitle.text = it.title
+            binding.textviewAuthorValue.text = it.author
+            binding.textviewGenreValue.text = it.genre
+            binding.checkboxFavorite.isChecked = it.favorite
+        }
     }
 
     override fun onDestroyView() {
