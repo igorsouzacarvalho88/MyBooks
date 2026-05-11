@@ -1,9 +1,12 @@
 package com.montyblank.mybooks.ui
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.montyblank.mybooks.R
@@ -35,9 +38,29 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setListeners() {
-        binding.imageviewBack.setOnClickListener{
+        binding.imageviewBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
+        binding.buttonRemove.setOnClickListener { handleRemove() }
+        binding.checkboxFavorite.setOnCheckedChangeListener {handleFavorite() }
+    }
+
+    private fun handleFavorite(){
+        viewModel.favoriteBook(bookId)
+    }
+    private fun handleRemove() {
+        //alertDialog
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage(getString(R.string.dialog_message_delete_item))
+            .setPositiveButton(getString(R.string.dialog_positive_button_yes)) { dialog, which ->
+                //Confirma a remoção do livro
+                viewModel.deleteBook(bookId)
+            }
+            .setNegativeButton(getString(R.string.dialog_negative_button_no)) { dialog, which ->
+                //Cancelar remoção do livro
+                dialog.dismiss()
+            }
+        builder.create().show()
     }
 
     private fun setObservers() {
@@ -49,6 +72,18 @@ class DetailsFragment : Fragment() {
 
             setGenreBackground(it.genre)
         }
+
+        viewModel.bookRemoval.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.msg_removed_successfully),
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                requireActivity().supportFragmentManager.popBackStack()
+            }
+        }
     }
 
     private fun setGenreBackground(genre: String) {
@@ -56,9 +91,11 @@ class DetailsFragment : Fragment() {
             "Terror" -> {
                 binding.textviewGenreValue.setBackgroundResource(R.drawable.rounded_label_red)
             }
+
             "Fantasia" -> {
                 binding.textviewGenreValue.setBackgroundResource(R.drawable.rounded_label_fantasy)
             }
+
             else -> {
                 binding.textviewGenreValue.setBackgroundResource(R.drawable.rounded_label_teal)
             }
