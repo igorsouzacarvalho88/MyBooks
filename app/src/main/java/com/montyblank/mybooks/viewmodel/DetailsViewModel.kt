@@ -8,7 +8,7 @@ import com.montyblank.mybooks.repository.BookRepository
 
 class DetailsViewModel : ViewModel() {
 
-    private val repository: BookRepository = BookRepository()
+    private val repository: BookRepository = BookRepository.getInstance()
 
     private val _book = MutableLiveData<BookEntity>()
     val book : LiveData<BookEntity> = _book
@@ -24,7 +24,7 @@ class DetailsViewModel : ViewModel() {
     }
 
     fun deleteBook(id: Int) {
-        _bookRemoval.value =repository.deleteBook(id, "", "")
+        _bookRemoval.value =repository.deleteBook(id)
     }
 
     fun favoriteBook(id: Int) {

@@ -39,12 +39,16 @@ class HomeFragment : Fragment() {
 
         attacherListener()
 
-        viewModel.getAllBooks()
-
        setObservers()
 
         return binding.root
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllBooks()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

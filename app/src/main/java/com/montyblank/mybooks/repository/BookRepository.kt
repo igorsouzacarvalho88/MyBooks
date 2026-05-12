@@ -2,12 +2,27 @@ package com.montyblank.mybooks.repository
 
 import com.montyblank.mybooks.entity.BookEntity
 
-class BookRepository {
+class BookRepository private constructor() {
 
     private val books = mutableListOf<BookEntity>()
 
     init {
         books.addAll(getInitialBooks())
+    }
+
+    //singleton
+    companion object {
+        private lateinit var instance: BookRepository
+
+        fun getInstance(): BookRepository {
+
+            synchronized(this) {
+                if (!::instance.isInitialized) {
+                    instance = BookRepository()
+                }
+            }
+            return instance
+        }
     }
 
     private fun getInitialBooks(): List<BookEntity> {
@@ -56,11 +71,10 @@ class BookRepository {
         return books.filter { it.author.contains(author, ignoreCase = true) }
     }
 
-    fun deleteBook(id: Int, title: String, author: String): Boolean {
-        return books.removeIf { book ->
-            book.id == id || book.title == title || book.author == author
-        }
+    fun deleteBook(id: Int): Boolean {
+        return books.removeIf { it.id == id }
     }
+
     fun toggleFavorite(id: Int): Boolean {
         val book = books.find { it.id == id } ?: return false
         book.favorite = !book.favorite
