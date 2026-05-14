@@ -21,8 +21,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: HomeViewModel by viewModels()
-    private val adapter: BookAdapter = BookAdapter(
-    )
+    private val adapter: BookAdapter = BookAdapter()
 
 
     override fun onCreateView(
