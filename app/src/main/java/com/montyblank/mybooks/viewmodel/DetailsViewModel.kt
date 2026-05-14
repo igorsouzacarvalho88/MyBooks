@@ -28,6 +28,6 @@ class DetailsViewModel : ViewModel() {
     }
 
     fun favoriteBook(id: Int) {
-    repository.toggleFavorite(id)
+        repository.toggleFavorite(id)
     }
 }

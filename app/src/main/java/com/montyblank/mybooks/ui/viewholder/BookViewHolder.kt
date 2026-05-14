@@ -9,14 +9,16 @@ import com.montyblank.mybooks.entity.BookEntity
 import com.montyblank.mybooks.ui.listener.BookListener
 
 class BookViewHolder(private val item: ItemBookBinding, private val listener: BookListener) :
-    RecyclerView.ViewHolder(item.root){
+    RecyclerView.ViewHolder(item.root) {
 
-    fun bind( book: BookEntity){
-       item.textviewTitle.text = book.title
+    fun bind(book: BookEntity) {
+        item.textviewTitle.text = book.title
         item.textviewGenre.text = book.genre
         item.textviewAuthor.text = book.author
 
         item.textviewTitle.setOnClickListener { listener.onClick(book.id) }
+        item.imageviewFavorite.setOnClickListener { listener.onFavoriteChange(book.id) }
+
 
         setGenreBackground(book.genre)
 
@@ -37,9 +39,11 @@ class BookViewHolder(private val item: ItemBookBinding, private val listener: Bo
             "Terror" -> {
                 item.textviewGenre.setBackgroundResource(R.drawable.rounded_label_red)
             }
+
             "Fantasia" -> {
                 item.textviewGenre.setBackgroundResource(R.drawable.rounded_label_fantasy)
             }
+
             else -> {
                 item.textviewGenre.setBackgroundResource(R.drawable.rounded_label_teal)
             }

@@ -20,10 +20,9 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel : HomeViewModel by viewModels()
-    private val adapter : BookAdapter = BookAdapter(
+    private val viewModel: HomeViewModel by viewModels()
+    private val adapter: BookAdapter = BookAdapter(
     )
-
 
 
     override fun onCreateView(
@@ -39,7 +38,7 @@ class HomeFragment : Fragment() {
 
         attacherListener()
 
-       setObservers()
+        setObservers()
 
         return binding.root
     }
@@ -55,7 +54,7 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun attacherListener(){
+    private fun attacherListener() {
         adapter.attachListener(object : BookListener {
             override fun onClick(id: Int) {
 
@@ -63,15 +62,20 @@ class HomeFragment : Fragment() {
                 bundle.putInt(BookConstants.KEY.BOOK_ID, id)
 
                 //navegar para detalhes
-                findNavController().navigate(R.id.navigation_details,bundle)
+                findNavController().navigate(R.id.navigation_details, bundle)
 
+            }
+
+            override fun onFavoriteChange(id: Int) {
+                viewModel.favoriteBook(id)
+                viewModel.getAllBooks()
             }
 
         })
     }
 
-    private fun setObservers(){
-        viewModel.books.observe(viewLifecycleOwner){
+    private fun setObservers() {
+        viewModel.books.observe(viewLifecycleOwner) {
             adapter.updateBooks(it)
         }
     }
