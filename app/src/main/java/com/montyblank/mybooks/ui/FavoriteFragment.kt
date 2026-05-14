@@ -37,6 +37,10 @@ class FavoriteFragment : Fragment() {
         binding.recyclerviewBooksFavorite.layoutManager = LinearLayoutManager(context)
         binding.recyclerviewBooksFavorite.adapter = adapter
 
+        attacherListener()
+
+        setObservers()
+
         return binding.root
     }
 
