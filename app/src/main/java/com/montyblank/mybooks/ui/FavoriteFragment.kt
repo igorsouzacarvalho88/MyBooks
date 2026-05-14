@@ -76,7 +76,16 @@ class FavoriteFragment : Fragment() {
 
     private fun setObservers() {
         favoriteViewModel.books.observe(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+                binding.recyclerviewBooksFavorite.visibility = View.GONE
+                binding.textviewNoBooks.visibility = View.VISIBLE
+                binding.imageviewNoBooks.visibility = View.VISIBLE
+            }else{
+                binding.recyclerviewBooksFavorite.visibility = View.VISIBLE
+                binding.textviewNoBooks.visibility = View.GONE
+                binding.imageviewNoBooks.visibility = View.GONE
             adapter.updateBooks(it)
+            }
         }
     }
 }
