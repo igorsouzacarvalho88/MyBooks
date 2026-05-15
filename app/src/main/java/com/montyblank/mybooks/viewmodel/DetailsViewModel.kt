@@ -1,14 +1,16 @@
 package com.montyblank.mybooks.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.montyblank.mybooks.entity.BookEntity
 import com.montyblank.mybooks.repository.BookRepository
 
-class DetailsViewModel : ViewModel() {
+class DetailsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: BookRepository = BookRepository.getInstance()
+    private val repository: BookRepository = BookRepository.getInstance(application.applicationContext)
 
     private val _book = MutableLiveData<BookEntity>()
     val book : LiveData<BookEntity> = _book
