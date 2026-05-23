@@ -43,12 +43,14 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavigation() {
         val navView: BottomNavigationView = binding.navView
 
-        // Forma estável de buscar o NavController usando FragmentContainerView
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.navigation_home,R.id.navigation_favorite )
-        )
+        // Forma mais segura de buscar o NavController
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_activity_main) as androidx.navigation.fragment.NavHostFragment
+        val navController = navHostFragment.navController
 
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.navigation_home, R.id.navigation_favorite)
+        )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)

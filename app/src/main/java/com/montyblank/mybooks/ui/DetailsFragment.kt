@@ -43,8 +43,8 @@ class DetailsFragment : Fragment() {
             requireActivity().supportFragmentManager.popBackStack()
         }
         binding.buttonRemove.setOnClickListener { handleRemove() }
-        binding.checkboxFavorite.setOnClickListener {
-            handleFavorite()
+        binding.checkboxFavorite.setOnCheckedChangeListener {
+            _, _ -> handleFavorite()
         }
     }
 
