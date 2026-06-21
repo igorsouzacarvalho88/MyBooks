@@ -1,10 +1,25 @@
 package com.montyblank.mybooks.entity
 
-data class BookEntity (
-    val id: Int,
-    val title: String,
-    val author: String,
-    var favorite: Boolean,
-    val genre: String,
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "Book")
+class BookEntity (
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Int,
+
+    @ColumnInfo(name = "title")
+    val title: String,
+
+    @ColumnInfo(name = "author")
+    val author: String,
+
+    @ColumnInfo(name = "favorite")
+    var favorite: Boolean,
+
+    @ColumnInfo(name = "genre")
+    val genre: String,
 )
