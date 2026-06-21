@@ -10,26 +10,25 @@ import com.montyblank.mybooks.entity.BookEntity
 @Dao
 interface BookDAO {
 
-    @Query("SELECT * FROM Book")
+    @Query("SELECT * FROM Books")
     fun getAllBooks(): List<BookEntity>
 
-    @Query("SELECT * FROM Book WHERE favorite = 1")
+    @Query("SELECT * FROM Books WHERE favorite = 1")
     fun getFavoriteBooks(): List<BookEntity>
 
-    @Query("SELECT * FROM Book WHERE id = :id")
-    fun getBookById(id: Int): BookEntity?
+    @Query("SELECT * FROM Books WHERE id = :id")
+    fun getBookById(id: Int): BookEntity
 
-    @Query("SELECT * FROM Book WHERE title = :title")
-    fun getBookByTitle(title: String): BookEntity?
+    @Query("SELECT * FROM Books WHERE title = :title")
+    fun getBookByTitle(title: String): BookEntity
 
-    @Query("SELECT * FROM Book WHERE author = :author")
-    fun getBookByAuthor(author: String): BookEntity?
+    @Query("SELECT * FROM Books WHERE author = :author")
+    fun getBookByAuthor(author: String): BookEntity
+    @Update
+    fun update(book: BookEntity)
 
-    @Query("UPDATE Book SET favorite = NOT favorite WHERE id = :id")
-    fun toggleFavorite(id: Int)
-
-    @Query("DELETE FROM Book WHERE id = :id")
-    fun deleteBook(id: Int): Boolean
+    @Delete
+    fun delete(book: BookEntity): Int
 
     @Insert
     fun insertBook(book: BookEntity): Long

@@ -8,7 +8,7 @@ import com.montyblank.mybooks.entity.BookEntity
 import com.montyblank.mybooks.helper.DataBaseConstants
 import androidx.core.database.sqlite.transaction
 
-class BookDataBaseHelper(context: Context) :
+/*class BookDataBaseHelper(context: Context) :
 
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
@@ -200,3 +200,4 @@ class BookDataBaseHelper(context: Context) :
         )
     }
 }
+*/
