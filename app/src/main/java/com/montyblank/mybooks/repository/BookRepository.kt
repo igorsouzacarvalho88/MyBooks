@@ -2,6 +2,7 @@ package com.montyblank.mybooks.repository
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import com.montyblank.mybooks.helper.DataBaseConstants
 import com.montyblank.mybooks.entity.BookEntity
 
@@ -23,6 +24,7 @@ class BookRepository private constructor(context: Context) {
             return instance
         }
     }
+
 
     fun getAllBooks(): List<BookEntity> {
         val db = database.readableDatabase
