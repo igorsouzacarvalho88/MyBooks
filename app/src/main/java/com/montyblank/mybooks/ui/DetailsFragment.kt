@@ -44,7 +44,7 @@ class DetailsFragment : Fragment() {
         }
         binding.buttonRemove.setOnClickListener { handleRemove() }
         binding.checkboxFavorite.setOnCheckedChangeListener {
-            _, _ -> handleFavorite()
+            _ , _ -> handleFavorite()
         }
     }
 

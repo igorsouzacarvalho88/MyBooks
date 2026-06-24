@@ -4,9 +4,10 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.montyblank.mybooks.entity.BookEntity
 import com.montyblank.mybooks.repository.BookRepository
+import kotlinx.coroutines.launch
 
 class DetailsViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -21,15 +22,15 @@ class DetailsViewModel(application: Application) : AndroidViewModel(application)
 
 
     fun getBookById(id: Int) {
-        _book.value = repository.getBookById(id)
+        viewModelScope.launch { _book.value = repository.getBookById(id) }
 
     }
 
     fun deleteBook(id: Int) {
-        _bookRemoval.value =repository.deleteBook(id)
+        viewModelScope.launch { _bookRemoval.value =repository.deleteBook(id) }
     }
 
     fun favoriteBook(id: Int) {
-        repository.toggleFavorite(id)
+        viewModelScope.launch { repository.toggleFavorite(id) }
     }
 }

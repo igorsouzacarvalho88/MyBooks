@@ -42,13 +42,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.getAllBooks()
-
-    }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -68,14 +61,13 @@ class HomeFragment : Fragment() {
 
             override fun onFavoriteChange(id: Int) {
                 viewModel.favoriteBook(id)
-                viewModel.getAllBooks()
             }
 
         })
     }
 
     private fun setObservers() {
-        viewModel.books.observe(viewLifecycleOwner) {
+        viewModel.bookList.observe(viewLifecycleOwner) {
             adapter.updateBooks(it)
         }
     }

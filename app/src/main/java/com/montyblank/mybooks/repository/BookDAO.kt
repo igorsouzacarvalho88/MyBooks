@@ -6,31 +6,42 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.montyblank.mybooks.entity.BookEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BookDAO {
 
+    /*
+    Itens que o Room consegue fornecer.
+    * Entity
+    * List<Entity>
+    * **LiveData<Entity>
+    * Flow<Entity>
+    * Cursor
+    * Int, log, Boolean
+    * */
+
     @Query("SELECT * FROM books")
-    fun getAllBooks(): List<BookEntity>
+    fun getAllBooks(): Flow<List<BookEntity>>
 
     @Query("SELECT * FROM books WHERE favorite = 1")
-    fun getFavoriteBooks(): List<BookEntity>
+    fun getFavoriteBooks(): Flow<List<BookEntity>>
 
     @Query("SELECT * FROM books WHERE id = :id")
-    fun getBookById(id: Int): BookEntity
+    suspend fun getBookById(id: Int): BookEntity
 
     @Query("SELECT * FROM books WHERE title = :title")
-    fun getBookByTitle(title: String): BookEntity
+    suspend fun getBookByTitle(title: String): BookEntity
 
     @Query("SELECT * FROM books WHERE author = :author")
-    fun getBookByAuthor(author: String): BookEntity
+    suspend fun getBookByAuthor(author: String): BookEntity
 
     @Update
-    fun update(book: BookEntity)
+    suspend fun update(book: BookEntity)
 
     @Delete
-    fun delete(book: BookEntity): Int
+    suspend fun delete(book: BookEntity): Int
 
     @Insert
-    fun insertBook(book: List<BookEntity>)
+    suspend fun insertBook(book: List<BookEntity>)
 }
